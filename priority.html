@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="style.css" />
   <style>
     form {
-      max-width: 800px;
+      max-width: 1000px;
       margin: 0 auto;
     }
 
@@ -20,21 +20,23 @@
       margin: 20px 0;
     }
 
-    .process-group {
-      margin-bottom: 20px;
+    .process-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 15px;
     }
 
-    label {
-      display: inline-block;
+    .process-row label {
+      width: auto;
+      font-weight: bold;
+    }
+
+    .process-row input {
       width: 120px;
-      text-align: right;
-      margin-right: 10px;
-    }
-
-    input[type="text"],
-    input[type="number"] {
       padding: 5px;
-      width: 120px;
       background-color: #1f1f1f;
       color: white;
       border: 1px solid #555;
@@ -61,13 +63,8 @@
       margin-top: 20px;
     }
 
-    #processes-container {
-      text-align: left;
-      margin-top: 20px;
-    }
-
     main {
-      padding-bottom: 100px; /* To ensure footer doesn't cover content */
+      padding-bottom: 100px; /* Prevent overlap with footer */
     }
   </style>
 </head>
@@ -112,15 +109,18 @@
 
       for (let i = 1; i <= count; i++) {
         container.insertAdjacentHTML('beforeend', `
-          <div class="process-group">
-            <label for="process-${i}-id">Process ${i} ID:</label>
-            <input type="text" id="process-${i}-id" name="process-${i}-id" required />
-            <label for="process-${i}-arrival">Arrival Time:</label>
-            <input type="number" id="process-${i}-arrival" name="process-${i}-arrival" required />
-            <label for="process-${i}-burst">Burst Time:</label>
-            <input type="number" id="process-${i}-burst" name="process-${i}-burst" required />
-            <label for="process-${i}-priority">Priority:</label>
-            <input type="number" id="process-${i}-priority" name="process-${i}-priority" required />
+          <div class="process-row">
+            <label>Process ${i} ID:</label>
+            <input type="text" id="process-${i}-id" required />
+
+            <label>Arrival Time:</label>
+            <input type="number" id="process-${i}-arrival" required />
+
+            <label>Burst Time:</label>
+            <input type="number" id="process-${i}-burst" required />
+
+            <label>Priority:</label>
+            <input type="number" id="process-${i}-priority" required />
           </div>
         `);
       }
